@@ -59,7 +59,7 @@ define([
 
 
         moveHeader: function() {
-            var target = this.gridObj.getElementsByClassName("mx-grid-toolbar")[0];
+            var target = this.gridObj.getElementsByClassName("mx-grid-controlbar")[0];
             
             target.appendChild(this.headerObj);
             
