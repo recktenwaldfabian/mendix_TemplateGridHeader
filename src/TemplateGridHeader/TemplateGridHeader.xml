@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="TemplateGridHeader.widget.TemplateGridHeader" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
+<widget offlineCapable="true" id="TemplateGridHeader.widget.TemplateGridHeader" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
     <name>TemplateGridHeader</name>
     <description>Pull a templategrid and a header table together</description>
 
