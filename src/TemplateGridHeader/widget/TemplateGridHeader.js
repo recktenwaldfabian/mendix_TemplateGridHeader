@@ -59,12 +59,21 @@ define([
 
 
         moveHeader: function() {
-            var target = this.gridObj.getElementsByClassName("mx-grid-controlbar")[0];
-            
-            target.appendChild(this.headerObj);
-            
-            // Show header
-            domStyle.set(this.headerObj, "display", "");
+            var targetGrid = this.gridObj.getElementsByClassName("mx-grid-controlbar")[0];
+            if ( targetGrid ) {
+                targetGrid.appendChild(this.headerObj);
+                // Show header
+                domStyle.set(this.headerObj, "display", "");
+                return;
+            }            
+            var targetList = this.gridObj.getElementsByClassName("mx-listview-list")[0];
+            if ( targetList ) {
+                targetList.parentNode.insertBefore( this.headerObj, targetList);
+                // Show header
+                domStyle.set(this.headerObj, "display", "");
+                return;
+            }        
+            logger.warning(this.id + ".moveHeader . no valid grid/list found");
         },
 
 
