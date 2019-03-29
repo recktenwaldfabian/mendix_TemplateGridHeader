@@ -24,7 +24,7 @@
   "generatorVersion": "2.0.1",
   "paths": {
     "testProjectFolder": "./test/",
-    "testProjectFileName": "Test.mpr"
+    "testProjectFileName": "TemplateGridHeader_Test.mpr"
   },
   "scripts": {
     "build": "node ./node_modules/gulp/bin/gulp build",
