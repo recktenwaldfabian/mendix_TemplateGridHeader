@@ -21,5 +21,11 @@
             <description>Refresh when the context updates (works only when context change is true)</description>
         </property>
 
+        <property key="hideHeaderBeforeMove" type="boolean" defaultValue="true">
+            <caption>Hide before Moving</caption>
+            <category>Behavior</category>
+            <description>Hide the initial header during loading. Disable to avoid popup sizing problems.</description>
+        </property>
+
     </properties>
 </widget>

@@ -17,6 +17,7 @@ define([
         // Set in Modeler
         refreshOnContextChange: false,
         refreshOnContextUpdate: false,
+        hideHeaderBeforeMove: true,
 
         // Internal
         _observer: null,
@@ -50,7 +51,10 @@ define([
                 this.headerObj = this.gridObj.previousSibling;
                 
                 // Hide header
-                domStyle.set(this.headerObj, "display", "none"); 
+                if ( this.hideHeaderBeforeMove ) {
+                    // hiding the header before moving it causes layout sizing issues in popups
+                    domStyle.set(this.headerObj, "display", "none");
+                }
                 
                 // Look for dom changes in the grid object
                 this._observe(this.gridObj, this._callback);                 
