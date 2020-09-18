@@ -28,8 +28,6 @@ define([
         
 
         postCreate: function () {
-            logger.debug(this.id + ".postCreate");
-            
             // Setup callback function
             this._callback = lang.hitch(this, function () 
             {
@@ -43,12 +41,14 @@ define([
 
 
         executeCode: function () {
-            logger.debug(this.id + ".executeCode");
-
             mx.addOnLoad ( lang.hitch(this, function () {
                 //  Find objects
-                this.gridObj   = this.domNode.previousSibling;
-                this.headerObj = this.gridObj.previousSibling;
+                this.gridObj   = this.domNode.previousElementSibling;
+                this.headerObj = this.gridObj.previousElementSibling;
+                while (this.headerObj && this.headerObj.nodeName!=='DIV' && this.headerObj.nodeName!=='TABLE') {
+                    // try to find a table or div element (since Mendix 8 there is a script tag above the grid)
+                    this.headerObj = this.headerObj.previousElementSibling;
+                }
                 
                 // Hide header
                 if ( this.hideHeaderBeforeMove ) {
@@ -70,19 +70,17 @@ define([
                 domStyle.set(this.headerObj, "display", "");
                 return;
             }            
-            var targetList = this.gridObj.getElementsByClassName("mx-listview-list")[0];
+            var targetList = this.gridObj.getElementsByTagName('ul')[0];
             if ( targetList ) {
                 targetList.parentNode.insertBefore( this.headerObj, targetList);
                 // Show header
                 domStyle.set(this.headerObj, "display", "");
                 return;
             }        
-            logger.warning(this.id + ".moveHeader . no valid grid/list found");
         },
 
 
         update: function (obj, callback) {
-            logger.debug(this.id + ".update");
             this.contextObj = obj;
             if (this.refreshOnContextChange) {
                 this.executeCode();
@@ -106,7 +104,6 @@ define([
         },
 
         _executeCallback: function (cb, from) {
-            logger.debug(this.id + "._executeCallback" + (from ? " from " + from : ""));
             if (cb && typeof cb === "function") {
                 cb();
             }
